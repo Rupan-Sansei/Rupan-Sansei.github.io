@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/28/DywGWD.png">
 <meta property="article:published_time" content="2020-11-23T08:15:32.000Z">
-<meta property="article:modified_time" content="2020-11-28T08:15:04.858Z">
+<meta property="article:modified_time" content="2020-11-28T12:09:52.334Z">
 <meta property="article:author" content="Rupan-Sansei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s3.ax1x.com/2020/11/28/DywGWD.png">
@@ -214,20 +214,20 @@
     <blockquote>
 <p>注意：如果想用hexo框架，要先下载nodejs和git，因为我电脑之前就安装了，所以就不再多说，如果有不会的可以自行百度一下。那么我们就进入正题</p>
 </blockquote>
-<h3 id="1-安装hexo框架，在本地运行并自己的第一个篇文章"><a href="#1-安装hexo框架，在本地运行并自己的第一个篇文章" class="headerlink" title="1.安装hexo框架，在本地运行并自己的第一个篇文章"></a>1.安装hexo框架，在本地运行并自己的第一个篇文章</h3><p>​  创建一个blog文件夹，并在终端中打开。在终端输入<code style="color:pink">npm install -g hexo-cli</code>全局安装，之后再输入<code style="color:pink">hexo -v</code>看是否成功。</p>
+<h3 id="1-安装hexo框架，在本地运行并自己的第一个篇文章"><a href="#1-安装hexo框架，在本地运行并自己的第一个篇文章" class="headerlink" title="1.安装hexo框架，在本地运行并自己的第一个篇文章"></a>1.安装hexo框架，在本地运行并自己的第一个篇文章</h3><p>​  创建一个blog文件夹，并在终端中打开。在终端输入<code  >npm install -g hexo-cli</code>全局安装，之后再输入<code  >hexo -v</code>看是否成功。</p>
 <a id="more"></a>
 <p><img src = 'https://s3.ax1x.com/2020/11/28/Dyd5xH.png' height='300px'></img></p>
-<p>​  之后输入命令<code style="color:pink">hexo init</code>初始化，文件夹会生成几个文件，如下图。之后输入命令<code style="color:pink">hexo s（hexo server的简写）</code>启动本地服务器，默认情况下，访问网址为： <code>http://localhost:4000/</code>,并在本地浏览器打开。</p>
+<p>​  之后输入命令<code  >hexo init</code>初始化，文件夹会生成几个文件，如下图。之后输入命令<code  >hexo s（hexo server的简写）</code>启动本地服务器，默认情况下，访问网址为： <code>http://localhost:4000/</code>,并在本地浏览器打开。</p>
 <center class = "half"> <img src = "https://s3.ax1x.com/2020/11/28/Dyd7qI.png"  height='200px'  align = left><img src = "https://s3.ax1x.com/2020/11/28/DywEJU.png" height='200px' align = right> </center>
 
 <p><img src="https://s3.ax1x.com/2020/11/28/DywGWD.png" alt="image-20201123210835175"></p>
-<p>​  先<code>CTRL</code>+<code>c</code>关闭服务器，之后输入命令<code style="color:pink">hexo new '我的一个文章'</code>在source/_posts下生成.md文件，打开我的一个文章.md输入内容，最后输入<code style="color:pink">hexo g（hexo generate的简写）</code>生成静态文件（第一次生成静态文件会比较多），再<code style="color:pink">hexo s</code>重新打开本地服务器。</p>
+<p>​  先<code>CTRL</code>+<code>c</code>关闭服务器，之后输入命令<code  >hexo new '我的一个文章'</code>在source/_posts下生成.md文件，打开我的一个文章.md输入内容，最后输入<code  >hexo g（hexo generate的简写）</code>生成静态文件（第一次生成静态文件会比较多），再<code  >hexo s</code>重新打开本地服务器。</p>
 <p><img src ='https://s3.ax1x.com/2020/11/28/Dyw2Os.png' width='400px'></img></p>
 <p><img src ='https://s3.ax1x.com/2020/11/28/DywztK.png'></img></p>
 <h3 id="2-在github-pages上部署hexo博客"><a href="#2-在github-pages上部署hexo博客" class="headerlink" title="2.在github pages上部署hexo博客"></a>2.在github pages上部署hexo博客</h3><p>​  第一步，先在自己的github上创建一个仓库(<strong>注意!一定是你的账号名字+.github.io</strong>)。第二步，配置_config.yml文件，拉到最后，修改为如下格式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<p>​  第三步输入<code style="color:pink">npm install hexo-deployer-git --save</code>安装hexo的git插件，最后输入<code style="color:pink">hexo d（hexo deploy的简写）</code>部署网站。</p>
+<p>​  第三步输入<code  >npm install hexo-deployer-git --save</code>安装hexo的git插件，最后输入<code  >hexo d（hexo deploy的简写）</code>部署网站。</p>
 <p><img src ='https://s3.ax1x.com/2020/11/28/Dy01ns.png'></img></p>
 <p><img src ='https://s3.ax1x.com/2020/11/28/Dy0thT.png' width='50%' height='50%' ></img></p>
 <blockquote>
