@@ -164,6 +164,102 @@
             
 
   
+    <article id="post-实习中学到的知识-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" target="_blank">实习中学到的知识(1)</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" class="archive-article-date">
+        <time datetime="2021-03-14T04:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="地区级联选择器插件"><a href="#地区级联选择器插件" class="headerlink" title="地区级联选择器插件"></a>地区级联选择器插件</h2><p>1.在npm中安装element-china-area-data城市数据</p>
+<p><code> npm install element-china-area-data -S</code></p>
+<p>2.在vue中导入数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; regionData, CodeToText &#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3.在vue中使用级联器来绑定城市数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">        size=&quot;large&quot;</span><br><span class="line">        :options=&quot;options&quot;</span><br><span class="line">        v-model=&quot;selectedOptions&quot;</span><br><span class="line">        @change=&quot;handleChange&quot;</span><br><span class="line">      &gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-cascader</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.在vue的js部分实现绑定值和方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; regionData, CodeToText &#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>; </span><br><span class="line"> <span class="comment">//regionData是省市区三级联动数据（不带“全部”选项） </span></span><br><span class="line"><span class="comment">//CodeToText是个大对象，属性是区域码，属性值是汉字 用法例如：CodeToText[&#x27;110000&#x27;]输出北京市</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&quot;app&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;                </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      options: regionData,</span><br><span class="line">      selectedOptions: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">   handleChange (value) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这只是简单的应用，如需了解更多可参考官方教程：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
+<h2 id="数组随机排序"><a href="#数组随机排序" class="headerlink" title="数组随机排序"></a>数组随机排序</h2><p>在答题开发中，我们通常会遇到一个随机题目的问题，我的想法是把题目的序号随机打乱之后形成一个新的数组，之后取前面的前几个就变向完成随机抽取题目。</p>
+<p>说到数组排序就需要用到<code>sort()</code>方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般都会用这种简单的方法去随机排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Random</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    arr.sort(<span class="function">() =&gt;</span> <span class="built_in">Math</span>.random() - <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么问题来了，这个真的是真正的随机排序吗？答案是No，具体实验数据可参考 <a target="_blank" rel="noopener" href="https://oldj.net/article/2017/01/23/shuffle-an-array-in-javascript/#comment-1466">这里</a></p>
+<p>通过实现可以发现，执行多次后，会发现每个元素仍然有很大机率在它原来的位置附近出现。</p>
+<p>在参考中有两种解决真正随机排序的方法，这里我就演示下oldj楼主所说的Fisher–Yates shuffle算法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = arr.length;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        <span class="keyword">let</span> j = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * i--);</span><br><span class="line">        [arr[j], arr[i]] = [arr[i], arr[j]];  <span class="comment">//ES6中的解构赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>排序结束后再获取新数组的前几个就类似在题库中随机获取几道题。这样的就解决了数组的随机排序，如果想看详细点的，可以看下<a target="_blank" rel="noopener" href="https://oldj.net/article/2017/01/23/shuffle-an-array-in-javascript/#comment-1466">这里</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-重温JS-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -564,7 +660,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2020 <a href="http://example.com/" target="_blank">Rupan-Sansei</a>
+    		&copy; 2018-2021 <a href="http://example.com/" target="_blank">Rupan-Sansei</a>
     	</div>
       	<div class="footer-right">
 			

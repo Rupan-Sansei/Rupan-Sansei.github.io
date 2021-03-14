@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>重温JS(2) | Rupan-Sansei的博客</title>
+  <title>Archives: 2021 | Rupan-Sansei的博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1.垃圾回收机制JavaScript 中主要的内存管理概念是 可达性。 简而言之，“可达”值是那些以某种方式可访问或可用的值。它们一定是存储在内存中的。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="重温JS(2)">
-<meta property="og:url" content="http://example.com/2020/12/14/%E9%87%8D%E6%B8%A9JS-2/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Rupan-Sansei的博客">
+<meta property="og:url" content="http://example.com/archives/2021/index.html">
 <meta property="og:site_name" content="Rupan-Sansei的博客">
-<meta property="og:description" content="1.垃圾回收机制JavaScript 中主要的内存管理概念是 可达性。 简而言之，“可达”值是那些以某种方式可访问或可用的值。它们一定是存储在内存中的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-14T13:39:15.000Z">
-<meta property="article:modified_time" content="2020-12-14T14:51:06.945Z">
 <meta property="article:author" content="Rupan-Sansei">
 <meta name="twitter:card" content="summary">
   
@@ -161,311 +157,54 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-重温JS-2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" class="archive-article-date">
+        <time datetime="2021-03-14T04:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" target="_blank">实习中学到的知识(1)</a>
   
-    <h1 class="article-title" itemprop="name">
-      重温JS(2)
     </h1>
   
 
 
-  
-  
-<a href="/2020/12/14/%E9%87%8D%E6%B8%A9JS-2/" class="archive-article-date">
-        <time datetime="2020-12-14T13:39:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-14</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.9k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="1-垃圾回收机制"><a href="#1-垃圾回收机制" class="headerlink" title="1.垃圾回收机制"></a>1.垃圾回收机制</h3><p>JavaScript 中主要的内存管理概念是 <strong>可达性</strong>。</p>
-<p>简而言之，“可达”值是那些以某种方式可访问或可用的值。它们一定是存储在内存中的。</p>
-<a id="more"></a>
-
-<ol>
-<li><p>这里列出固有的可达值的基本集合，这些值明显不能被释放。</p>
-<p>比方说：</p>
-<ul>
-<li>当前函数的局部变量和参数。</li>
-<li>嵌套调用时，当前调用链上所有函数的变量与参数。</li>
-<li>全局变量。</li>
-<li>（还有一些内部的）</li>
-</ul>
-<p>这些值被称作 <strong>根（roots）</strong>。</p>
-</li>
-<li><p>如果一个值可以通过引用或引用链从根访问任何其他值，则认为该值是可达的。</p>
-<p>比方说，如果全局变量中有一个对象，并且该对象有一个属性引用了另一个对象，则 <strong>该</strong> 对象被认为是可达的。而且它引用的内容也是可达的。下面是详细的例子。</p>
-</li>
-</ol>
-<p>在 JavaScript 引擎中有一个被称作 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">垃圾回收器</a> 的东西在后台执行。它监控着所有对象的状态，并删除掉那些已经不可达的。</p>
-<h3 id="2-可选链“-”"><a href="#2-可选链“-”" class="headerlink" title="2.可选链“?.”"></a>2.可选链“?.”</h3><p>如果可选链 <code>?.</code> 前面的部分是 <code>undefined</code> 或者 <code>null</code>，它会停止运算并返回该部分。</p>
-<p><strong>为了简明起见，在本文接下来的内容中，我们会说如果一个属性既不是 <code>null</code> 也不是 <code>undefined</code>，那么它就“存在”。</strong></p>
-<p>换句话说，例如 <code>value?.prop</code>：</p>
-<ul>
-<li>如果 <code>value</code> 存在，则结果与 <code>value.prop</code> 相同，</li>
-<li>否则（当 <code>value</code> 为 <code>undefined/null</code> 时）则返回 <code>undefined</code>。</li>
-</ul>
-<p>可选链 <code>?.</code> 语法有三种形式：</p>
-<ol>
-<li><code>obj?.prop</code> —— 如果 <code>obj</code> 存在则返回 <code>obj.prop</code>，否则返回 <code>undefined</code>。</li>
-<li><code>obj?.[prop]</code> —— 如果 <code>obj</code> 存在则返回 <code>obj[prop]</code>，否则返回 <code>undefined</code>。</li>
-<li><code>obj.method?.()</code> —— 如果 <code>obj.method</code> 存在则调用 <code>obj.method()</code>，否则返回 <code>undefined</code>。</li>
-</ol>
-<h3 id="3-数字舍入"><a href="#3-数字舍入" class="headerlink" title="3.数字舍入"></a>3.数字舍入</h3><p>舍入（rounding）是使用数字时最常用的操作之一。</p>
-<p>这里有几个对数字进行舍入的内建函数：</p>
-<ul>
-<li><p><code>Math.floor</code></p>
-<p>向下舍入：<code>3.1</code> 变成 <code>3</code>，<code>-1.1</code> 变成 <code>-2</code>。</p>
-</li>
-<li><p><code>Math.ceil</code></p>
-<p>向上舍入：<code>3.1</code> 变成 <code>4</code>，<code>-1.1</code> 变成 <code>-1</code>。</p>
-</li>
-<li><p><code>Math.round</code></p>
-<p>向最近的整数舍入：<code>3.1</code> 变成 <code>3</code>，<code>3.6</code> 变成 <code>4</code>，<code>-1.1</code> 变成 <code>-1</code>。</p>
-</li>
-<li><p><code>Math.trunc</code>（IE 浏览器不支持这个方法）</p>
-<p>移除小数点后的所有内容而没有舍入：<code>3.1</code> 变成 <code>3</code>，<code>-1.1</code> 变成 <code>-1</code>。</p>
-</li>
-</ul>
-<h3 id="4-不精确的计算"><a href="#4-不精确的计算" class="headerlink" title="4.不精确的计算"></a>4.不精确的计算</h3><p>先看下面的例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span> ); <span class="comment">// false</span></span><br><span class="line">alert( <span class="number">0.1</span> + <span class="number">0.2</span> ); <span class="comment">// 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
-
-<p>为什么会这样呢？</p>
-<p>一个数字以其二进制的形式存储在内存中，一个 1 和 0 的序列。但是在十进制数字系统中看起来很简单的 <code>0.1</code>，<code>0.2</code> 这样的小数，实际上在二进制形式中是无限循环小数。</p>
-<p>换句话说，什么是 <code>0.1</code>？<code>0.1</code> 就是 <code>1</code> 除以 <code>10</code>，<code>1/10</code>，即十分之一。在十进制数字系统中，这样的数字表示起来很容易。将其与三分之一进行比较：<code>1/3</code>。三分之一变成了无限循环小数 <code>0.33333(3)</code>。</p>
-<p>在十进制数字系统中，可以保证以 <code>10</code> 的整数次幂作为除数能够正常工作，但是以 <code>3</code> 作为除数则不能。也是同样的原因，在二进制数字系统中，可以保证以 <code>2</code> 的整数次幂作为除数时能够正常工作，但 <code>1/10</code> 就变成了一个无限循环的二进制小数。</p>
-<p>使用二进制数字系统无法 <strong>精确</strong> 存储 <em>0.1</em> 或 <em>0.2</em>，就像没有办法将三分之一存储为十进制小数一样。</p>
-<h3 id="5-isFinite-和-isNaN"><a href="#5-isFinite-和-isNaN" class="headerlink" title="5.isFinite 和 isNaN"></a>5.isFinite 和 isNaN</h3><p><code>isNaN(value)</code> 将其参数转换为数字，然后测试它是否为 <code>NaN</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert( isNaN(NaN) ); &#x2F;&#x2F; true</span><br><span class="line">alert( isNaN(&quot;str&quot;) ); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
-
-<p>但是我们需要这个函数吗？我们不能只使用 <code>=== NaN</code> 比较吗？不好意思，这不行。值 “NaN” 是独一无二的，它不等于任何东西，包括它自身：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="literal">NaN</span> === <span class="literal">NaN</span> ); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<p><code>isFinite(value)</code> 将其参数转换为数字，如果是常规数字，则返回 <code>true</code>，而不是 <code>NaN/Infinity/-Infinity</code>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">isFinite</span>(<span class="string">&quot;15&quot;</span>) ); <span class="comment">// true</span></span><br><span class="line">alert( <span class="built_in">isFinite</span>(<span class="string">&quot;str&quot;</span>) ); <span class="comment">// false，因为是一个特殊的值：NaN</span></span><br><span class="line">alert( <span class="built_in">isFinite</span>(<span class="literal">Infinity</span>) ); <span class="comment">// false，因为是一个特殊的值：Infinity</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>有一个特殊的内建方法 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/is"><code>Object.is</code></a>，它类似于 <code>===</code> 一样对值进行比较，但它对于两种边缘情况更可靠：</p>
-<ol>
-<li>它适用于 <code>NaN</code>：<code>Object.is（NaN，NaN）=== true</code>，这是件好事。</li>
-<li>值 <code>0</code> 和 <code>-0</code> 是不同的：<code>Object.is（0，-0）=== false</code>，从技术上讲这是对的，因为在内部，数字的符号位可能会不同，即使其他所有位均为零。</li>
-</ol>
-<p>在所有其他情况下，<code>Object.is(a，b)</code> 与 <code>a === b</code> 相同。</p>
-<p>这种比较方式经常被用在 JavaScript 规范中。当内部算法需要比较两个值是否完全相同时，它使用 <code>Object.is</code>（内部称为 <a target="_blank" rel="noopener" href="https://tc39.github.io/ecma262/#sec-samevalue">SameValue</a>）。</p>
-</blockquote>
-<h3 id="6-parseInt-和-parseFloat"><a href="#6-parseInt-和-parseFloat" class="headerlink" title="6.parseInt 和 parseFloat"></a>6.parseInt 和 parseFloat</h3><p>它们可以从字符串中“读取”数字，直到无法读取为止。如果发生 error，则返回收集到的数字。函数 <code>parseInt</code> 返回一个整数，而 <code>parseFloat</code> 返回一个浮点数，如果第一个不是数字就返回NaN：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">parseInt</span>(<span class="string">&#x27;100px&#x27;</span>) ); <span class="comment">// 100</span></span><br><span class="line">alert( <span class="built_in">parseFloat</span>(<span class="string">&#x27;12.5em&#x27;</span>) ); <span class="comment">// 12.5</span></span><br><span class="line"></span><br><span class="line">alert( <span class="built_in">parseInt</span>(<span class="string">&#x27;12.3&#x27;</span>) ); <span class="comment">// 12，只有整数部分被返回了</span></span><br><span class="line">alert( <span class="built_in">parseFloat</span>(<span class="string">&#x27;12.3.4&#x27;</span>) ); <span class="comment">// 12.3，在第二个点出停止了读取</span></span><br><span class="line"></span><br><span class="line">alert( <span class="built_in">parseInt</span>(<span class="string">&#x27;a123&#x27;</span>) ); <span class="comment">// NaN，第一个符号停止了读取</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="7-Math的数学函数"><a href="#7-Math的数学函数" class="headerlink" title="7.Math的数学函数"></a>7.Math的数学函数</h3><p>1.<strong>Math.random()</strong></p>
-<p>返回一个从 0 到 1 的随机数（不包括 1）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">Math</span>.random() ); <span class="comment">// 0.1234567894322</span></span><br><span class="line">alert( <span class="built_in">Math</span>.random() ); <span class="comment">// 0.5435252343232</span></span><br><span class="line">alert( <span class="built_in">Math</span>.random() ); <span class="comment">// ... (任何随机数)</span></span><br></pre></td></tr></table></figure>
-
-<p>2.<strong>Math.max(a, b, c…)</strong>/ <strong>Math.min(a, b, c…)</strong></p>
-<p>从任意数量的参数中返回最大/最小值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">Math</span>.max(<span class="number">3</span>, <span class="number">5</span>, -<span class="number">10</span>, <span class="number">0</span>, <span class="number">1</span>) ); <span class="comment">// 5</span></span><br><span class="line">alert( <span class="built_in">Math</span>.min(<span class="number">1</span>, <span class="number">2</span>) ); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>3.<strong>Math.pow(n, power)</strong></p>
-<p>返回 <code>n</code> 的给定（power）次幂</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">10</span>) ); <span class="comment">// 2 的 10 次幂 = 1024</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="8-字符串是不可变的"><a href="#8-字符串是不可变的" class="headerlink" title="8.字符串是不可变的"></a>8.字符串是不可变的</h3><p>在 JavaScript 中，字符串不可更改。改变字符是不可能的。</p>
-<p>我们证明一下为什么不可能：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;Hi&#x27;</span>;</span><br><span class="line"></span><br><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;h&#x27;</span>; <span class="comment">// error</span></span><br><span class="line">alert( str[<span class="number">0</span>] ); <span class="comment">// 无法运行</span></span><br></pre></td></tr></table></figure>
-
-<p>通常的解决方法是创建一个新的字符串，并将其分配给 <code>str</code> 而不是以前的字符串。</p>
-<p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;Hi&#x27;</span>;</span><br><span class="line"></span><br><span class="line">str = <span class="string">&#x27;h&#x27;</span> + str[<span class="number">1</span>];  <span class="comment">// 替换字符串</span></span><br><span class="line"></span><br><span class="line">alert( str ); <span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
-
-<p>改变大小写：</p>
-<p>toLowerCase()和 toUpperCase()方法可以改变大小写：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="string">&#x27;Interface&#x27;</span>.toUpperCase() ); <span class="comment">// INTERFACE</span></span><br><span class="line">alert( <span class="string">&#x27;Interface&#x27;</span>.toLowerCase() ); <span class="comment">// interface</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//或者我们想要使一个字符变成小写</span></span><br><span class="line">alert( <span class="string">&#x27;Interface&#x27;</span>[<span class="number">0</span>].toLowerCase() ); <span class="comment">// &#x27;i&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="9-获取子字符串"><a href="#9-获取子字符串" class="headerlink" title="9.获取子字符串"></a>9.获取子字符串</h3><p>JavaScript 中有三种获取字符串的方法：<code>substring</code>、<code>substr</code> 和 <code>slice</code>。</p>
-<ul>
-<li><p><code>str.slice(start [, end])</code></p>
-<p>返回字符串从 <code>start</code> 到（但不包括）<code>end</code> 的部分。</p>
-<p>如果没有第二个参数，<code>slice</code> 会一直运行到字符串末尾</p>
-</li>
-</ul>
-<ul>
-<li><p><code>**str.substring(start [, end])**</code>返回字符串在 <code>start</code> 和 <code>end</code> <strong>之间</strong> 的部分。</p>
-<p>这与 <code>slice</code> 几乎相同，但它允许 <code>start</code> 大于 <code>end</code>。</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;stringify&quot;</span>;</span><br><span class="line">alert( str.slice(<span class="number">0</span>, <span class="number">5</span>) ); <span class="comment">// &#x27;strin&#x27;，从 0 到 5 的子字符串（不包括 5）</span></span><br><span class="line">alert( str.slice(<span class="number">0</span>, <span class="number">1</span>) ); <span class="comment">// &#x27;s&#x27;，从 0 到 1，但不包括 1，所以只有在 0 处的字符</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;stringify&quot;</span>;</span><br><span class="line">alert( str.slice(<span class="number">2</span>) ); <span class="comment">// 从第二个位置直到结束</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;stringify&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从右边的第四个位置开始，在右边的第一个位置结束</span></span><br><span class="line">alert( str.slice(-<span class="number">4</span>, -<span class="number">1</span>) ); <span class="comment">// &#x27;gif&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;stringify&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这些对于 substring 是相同的</span></span><br><span class="line">alert( str.substring(<span class="number">2</span>, <span class="number">6</span>) ); <span class="comment">// &quot;ring&quot;</span></span><br><span class="line">alert( str.substring(<span class="number">6</span>, <span class="number">2</span>) ); <span class="comment">// &quot;ring&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ……但对 slice 是不同的：</span></span><br><span class="line">alert( str.slice(<span class="number">2</span>, <span class="number">6</span>) ); <span class="comment">// &quot;ring&quot;（一样）</span></span><br><span class="line">alert( str.slice(<span class="number">6</span>, <span class="number">2</span>) ); <span class="comment">// &quot;&quot;（空字符串）</span></span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Rupan-Sansei
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://example.com/2020/12/14/重温JS-2/" title="重温JS(2)" target="_blank">http://example.com/2020/12/14/重温JS-2/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
+          
 
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/14/%E9%87%8D%E6%B8%A9JS-2/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          实习中学到的知识(1)
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/12/11/%E9%87%8D%E6%B8%A9JS-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">重温JS(1)</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -497,8 +236,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
