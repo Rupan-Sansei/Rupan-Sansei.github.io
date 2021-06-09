@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>实习中学到的知识(1)</title>
+    <title>标签 - JavaScript</title>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
@@ -17,112 +17,61 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
-    
-        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
-    
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/index.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
-
 <meta name="generator" content="Hexo 5.2.0"></head>
 <body>
     <a id="cover"></a>
     <div id="header">
-    <div class="header">
+    <div class="header" >
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-subtitle">实习中学到的知识(1)</h1>
-                <div class="header-subinfo">
-                    <p class="article-info-text">
-                        <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2021-03-14
-                        </span>
-                        
-                            <span id="/2021/03/14/实习中学到的知识-1/" class="leancloud_visitors" data-flag-title="实习中学到的知识(1)">
-                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
-                            </span>
-                        
-                        <span>
-                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/03/14/实习中学到的知识-1/"></span>
-                        </span>  
-                    </p>                 
-                </div>
+                <h1 class="header-title"></h1>
+                <h2 class="header-description" id="hitokoto"></h2>
+                <h3 class="header-info" id="hitokotoAuthor"></h3>
+                <!--
+                <h1 class="header-subtitle"></h1>
+                <p class="header-subinfo"></p>
+                -->
             </div>
         </div>
-        <canvas id="articleHeaderCanvas"></canvas>
+        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
+            <span class="hidden">Scroll Down</span>
+            <i class="scroll-down-icon iconfont icon-return"></i>
+        </a>
     </div>
 </div>
     <div id="container">
     <div id="content">
-        <div id="article">
-    <div class="toc"></div>
-    <div class="article-body">
-        <h2 id="地区级联选择器插件"><a href="#地区级联选择器插件" class="headerlink" title="地区级联选择器插件"></a>地区级联选择器插件</h2><p>1.在npm中安装element-china-area-data城市数据</p>
-<p><code> npm install element-china-area-data -S</code></p>
-<p>2.在vue中导入数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; regionData, CodeToText &#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p><em><a id="more"></a></em></p>
-<p>3.在vue中使用级联器来绑定城市数据</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">        size=&quot;large&quot;</span><br><span class="line">        :options=&quot;options&quot;</span><br><span class="line">        v-model=&quot;selectedOptions&quot;</span><br><span class="line">        @change=&quot;handleChange&quot;</span><br><span class="line">      &gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-cascader</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>4.在vue的js部分实现绑定值和方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; regionData, CodeToText &#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>; </span><br><span class="line"> <span class="comment">//regionData是省市区三级联动数据（不带“全部”选项） </span></span><br><span class="line"><span class="comment">//CodeToText是个大对象，属性是区域码，属性值是汉字 用法例如：CodeToText[&#x27;110000&#x27;]输出北京市</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&quot;app&quot;</span>,</span><br><span class="line">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;                </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      options: regionData,</span><br><span class="line">      selectedOptions: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">   handleChange (value) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这只是简单的应用，如需了解更多可参考官方教程：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
-<h2 id="数组随机排序"><a href="#数组随机排序" class="headerlink" title="数组随机排序"></a>数组随机排序</h2><p>在答题开发中，我们通常会遇到一个随机题目的问题，我的想法是把题目的序号随机打乱之后形成一个新的数组，之后取前面的前几个就变向完成随机抽取题目。</p>
-<p>说到数组排序就需要用到<code>sort()</code>方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般都会用这种简单的方法去随机排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Random</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    arr.sort(<span class="function">() =&gt;</span> <span class="built_in">Math</span>.random() - <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>那么问题来了，这个真的是真正的随机排序吗？答案是No，具体实验数据可参考 <a target="_blank" rel="noopener" href="https://oldj.net/article/2017/01/23/shuffle-an-array-in-javascript/#comment-1466">这里</a></p>
-<p>通过实现可以发现，执行多次后，会发现每个元素仍然有很大机率在它原来的位置附近出现。</p>
-<p>在参考中有两种解决真正随机排序的方法，这里我就演示下oldj楼主所说的Fisher–Yates shuffle算法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shuffle</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = arr.length;</span><br><span class="line">    <span class="keyword">while</span> (i) &#123;</span><br><span class="line">        <span class="keyword">let</span> j = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * i--);</span><br><span class="line">        [arr[j], arr[i]] = [arr[i], arr[j]];  <span class="comment">//ES6中的解构赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>排序结束后再获取新数组的前几个就类似在题库中随机获取几道题。这样的就解决了数组的随机排序，如果想看详细点的，可以看下<a target="_blank" rel="noopener" href="https://oldj.net/article/2017/01/23/shuffle-an-array-in-javascript/#comment-1466">这里</a></p>
-
-        <p class="suffix-end">__END__</p>
-        <div class="suffix-box">
-            <div class="suffix-box-left">
-                <img src="https://s3.ax1x.com/2020/11/28/DyUnsI.png" alt="Rupan-Sansei">
-            </div>
-            <div class="suffix-box-right">
-                <span class="suffix-box-title">文章作者</span>：Rupan-Sansei
-                <br>
-                <span class="suffix-box-title">文章出处</span>：<a href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" target="_blank">实习中学到的知识(1)</a>
-                <br>
-                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
-                <br>
-                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
-                <br>
-                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
-                <br>
-            </div>
-            <div style="clear: both;"></div>
-        </div>
-    </div>
-    <div class="article-footer">
-        
-        
-        <div class="article-prev-next">
-            
-                <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" class="prev-prefix">« </a> 上一篇：    <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" title="发布于 2021-06-09 06:21">js知识点整理</a>
-                <br>
-            
-            
-                <a href="/2020/12/14/%E9%87%8D%E6%B8%A9JS-2/" class="next-prefix">» </a> 下一篇：    <a href="/2020/12/14/%E9%87%8D%E6%B8%A9JS-2/" title="发布于 2020-12-14 09:39">重温JS(2)</a>
-            
-        </div>
-    </div>
+        <div class="articles">
     
-    <div class="article-comments">
-        <div class="comments-title">
-            评论列表
+        <div class="article">
+            <div class="article-title">
+                <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">js知识点整理</a>
+                
+            </div>
+            <div class="article-abstract">
+                
+            </div>
+            <div class="clear"></div>
+            <div class="article-info">
+                <span>
+                    <i class="iconfont icon-time"></i> 发表时间：2021-06-09
+                </span>
+                
+                    <span id="/2021/06/09/js知识整理/" class="leancloud_visitors" data-flag-title="js知识点整理">
+                        <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                    </span>
+                
+                <span>
+                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/09/js知识整理/"></span>
+                </span>
+            </div>
+            <div class="clear"></div>     
         </div>
-        <div class="comments-content">
-        </div>
-    </div>
-
+    
+    
 </div>
 
     </div>
