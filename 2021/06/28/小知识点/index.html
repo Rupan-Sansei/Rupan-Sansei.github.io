@@ -6,7 +6,7 @@
     <meta name="referrer" content="origin">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>归档</title>
+    <title>css知识点</title>
 
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/LongCang.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Monda.css">
@@ -17,62 +17,108 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/Rosario.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/font/UbuntuMono.css">
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/archive.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/post.css">
+    
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/css/normal.css">
+    
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/first19326/cdn@master/static/js/jquery-3.4.1.min.js"></script>
+
 <meta name="generator" content="Hexo 5.2.0"></head>
 <body>
     <a id="cover"></a>
     <div id="header">
-    <div class="header" >
+    <div class="header">
         <div class="vertical">
             <div class="inner">
-                <h1 class="header-title"></h1>
-                <h2 class="header-description" id="hitokoto"></h2>
-                <h3 class="header-info" id="hitokotoAuthor"></h3>
-                <!--
-                <h1 class="header-subtitle"></h1>
-                <p class="header-subinfo"></p>
-                -->
+                <h1 class="header-subtitle">css知识点</h1>
+                <div class="header-subinfo">
+                    <p class="article-info-text">
+                        <span>
+                            <i class="iconfont icon-time"></i> 发表时间：2021-06-28
+                        </span>
+                        
+                            <span id="/2021/06/28/小知识点/" class="leancloud_visitors" data-flag-title="css知识点">
+                                <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
+                            </span>
+                        
+                        <span>
+                            <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/2021/06/28/小知识点/"></span>
+                        </span>  
+                    </p>                 
+                </div>
             </div>
         </div>
-        <a class="scroll-down" href="javascript:;" target="_self" data-offset="-45">
-            <span class="hidden">Scroll Down</span>
-            <i class="scroll-down-icon iconfont icon-return"></i>
-        </a>
+        <canvas id="articleHeaderCanvas"></canvas>
     </div>
 </div>
     <div id="container">
     <div id="content">
-          
-    <div class="articles-year">
-        <h2>2021</h2>
-        <ul class="list">
+        <div id="article">
+    <div class="toc"></div>
+    <div class="article-body">
+        <h3 id="关于linear-gradient使用（渐变）"><a href="#关于linear-gradient使用（渐变）" class="headerlink" title="关于linear-gradient使用（渐变）"></a>关于linear-gradient使用（渐变）</h3><p>​    在工作中，遇到需要在盒子4个角都是缺角的样式，刚开始不知道怎么做，于是就面向百度编程:joy:,知道了一种通过css的linear-gradient来实现，这里就写下来记录一下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line">        //先给一个固定宽高//</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: pink;</span><br><span class="line">        margin: 20% auto;</span><br><span class="line">		</span><br><span class="line">        background: linear-gradient(135deg, transparent 10px, pink 0) top left,</span><br><span class="line">            linear-gradient(-135deg, transparent 10px, pink 0) top right,</span><br><span class="line">            linear-gradient(-45deg, transparent 10px, pink 0) bottom right,</span><br><span class="line">            linear-gradient(45deg, transparent 10px, pink 0) bottom left;</span><br><span class="line">        background-size: 50% 50%;</span><br><span class="line">        background-repeat: no-repeat;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/RU8Emd"><img src="https://z3.ax1x.com/2021/06/28/RU8Emd.png" alt="RU8Emd.png"></a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//圆弧切角</span><br><span class="line"><span class="selector-class">.cricle</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(circle at top left, transparent <span class="number">10px</span>, #<span class="number">58</span>a <span class="number">0</span>) top left,</span><br><span class="line">          <span class="built_in">radial-gradient</span>(circle at top right, transparent <span class="number">10px</span>, #<span class="number">58</span>a <span class="number">0</span>) top right,</span><br><span class="line">          <span class="built_in">radial-gradient</span>(circle at bottom right, transparent <span class="number">10px</span>, #<span class="number">58</span>a <span class="number">0</span>) bottom right,</span><br><span class="line">          <span class="built_in">radial-gradient</span>(circle at bottom left, transparent <span class="number">10px</span>, #<span class="number">58</span>a <span class="number">0</span>) bottom left;</span><br><span class="line">  <span class="attribute">background-size</span>: <span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/RU8O9f"><img src="https://z3.ax1x.com/2021/06/28/RU8O9f.png" alt="RU8O9f.png"></a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//折角</span><br><span class="line"><span class="selector-class">.foldingAngle</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:</span><br><span class="line">        <span class="built_in">linear-gradient</span>(to left bottom, transparent <span class="number">50%</span>, rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.4</span>) <span class="number">0</span>) no-repeat <span class="number">100%</span> <span class="number">0</span> / <span class="number">1.4em</span> <span class="number">1.4em</span>,</span><br><span class="line">        <span class="built_in">linear-gradient</span>(-<span class="number">135deg</span>, transparent <span class="number">1em</span>, #<span class="number">58</span>a <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/RUJuQS"><img src="https://z3.ax1x.com/2021/06/28/RUJuQS.png" alt="RUJuQS.png"></a></p>
+<blockquote>
+<p>radial-gradient 的基本参数有3个，渐变的方向，开始颜色和结束的颜色，默认的方向是从上到下，方向可以填<code>45edg</code>或者<code>to right top</code></p>
+<p>在之前一个项目中，我用了很多的绝对定位，我老板说不要用太多，这样会让页面布局不自然，说兼容性最好的布局就是自然的布局，就是默认的元素的排序，少用绝对定位。:joy:其实老板说的也不是没有道理。以后要注意下布局和兼容性问题了。​</p>
+</blockquote>
+
+        <p class="suffix-end">__END__</p>
+        <div class="suffix-box">
+            <div class="suffix-box-left">
+                <img src="https://s3.ax1x.com/2020/11/28/DyUnsI.png" alt="Rupan-Sansei">
+            </div>
+            <div class="suffix-box-right">
+                <span class="suffix-box-title">文章作者</span>：Rupan-Sansei
+                <br>
+                <span class="suffix-box-title">文章出处</span>：<a href="/2021/06/28/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_blank">css知识点</a>
+                <br>
+                <span class="suffix-box-title">作者签名</span>：简单地活着, 肆意又精彩.
+                <br>
+                <span class="suffix-box-title">关于主题</span>：<a href="https://github.com/first19326/Hexo-LiveForCode" target="_blank">Hexo - Live For Code</a>
+                <br>
+                <span class="suffix-box-title">版权声明</span>：文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" title="BY-NC-SA" target="_blank">BY-NC-SA</a> 许可协议，转载请注明出处
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="article-footer">
+        
+        
+            <div class="tag">
+                标签：
+                
+                    <a href="/tag/CSS/">CSS</a>
+                
+            </div>
+        
+        <div class="article-prev-next">
             
-                <li>
-                    <span class="date">2021/06/28</span>
-                    <a href="/2021/06/28/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" title="css知识点">    
-                        <span>css知识点</span>
-                    </a>
-                </li>
             
-                <li>
-                    <span class="date">2021/06/09</span>
-                    <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" title="js知识点整理">    
-                        <span>js知识点整理</span>
-                    </a>
-                </li>
+                <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" class="next-prefix">» </a> 下一篇：    <a href="/2021/06/09/js%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" title="发布于 2021-06-09 06:21">js知识点整理</a>
             
-                <li>
-                    <span class="date">2021/03/14</span>
-                    <a href="/2021/03/14/%E5%AE%9E%E4%B9%A0%E4%B8%AD%E5%AD%A6%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86-1/" title="实习中学到的知识(1)">    
-                        <span>实习中学到的知识(1)</span>
-                    </a>
-                </li>
-            
-        </ul>
+        </div>
+    </div>
+    
+    <div class="article-comments">
+        <div class="comments-title">
+            评论列表
+        </div>
+        <div class="comments-content">
+        </div>
     </div>
 
+</div>
 
     </div>
 </div>
